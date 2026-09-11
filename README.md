@@ -30,7 +30,7 @@ Prerequisites
 Installation
 Clone the repository and move into the project directory:
 bash
-git clone <YOUR_REPOSITORY_URL>
+git clone https://github.com/Mahdi-Ghasri/todo_cli.git
 cd todo_cli
 
 Create and activate a virtual environment:
