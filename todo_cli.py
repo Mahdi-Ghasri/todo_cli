@@ -8,14 +8,14 @@ TASKS_FILE = os.getenv("TASKS_FILE")
 if not TASKS_FILE:
     raise ValueError("TASKS_FILE is not set in the .env file.")
 
-parser = argparse.ArgumentParser(description= "A simple CLI project")
+parser = argparse.ArgumentParser(description="A simple CLI project")
 
-subparsers = parser.add_subparsers(dest="command", required=True)
+subparsers = parser.add_subparsers(dest="command" , required=True)
 
 add_parser = subparsers.add_parser("add")
 add_parser.add_argument("task")
 
-list_parser = subparsers.add_parser("list")
+subparsers.add_parser("list")
 
 delete_parser = subparsers.add_parser("delete")
 delete_parser.add_argument("task_number", type=int)
@@ -29,7 +29,7 @@ def load_tasks():
 
         return tasks
 
-#-----------------------------------------------------------
+
 
 def save_tasks(tasks):
     with open(TASKS_FILE, "w", encoding="utf-8") as file:
@@ -37,7 +37,7 @@ def save_tasks(tasks):
 
 
 
-#----------------------------------------------------------- 
+
 
 def add_task(task):
     tasks = load_tasks()
@@ -46,7 +46,7 @@ def add_task(task):
 
 
 
-#-----------------------------------------------------------
+
 
 def list_tasks():
     tasks = load_tasks()
@@ -56,12 +56,14 @@ def list_tasks():
 
 
 
-#-----------------------------------------------------------
+
 
 def delete_task(task_number):
     tasks = load_tasks()
 
-    del tasks[task_number -1]
+# Convert the user- facing task number to a zero-based list index.
+
+    del tasks[task_number - 1]
 
     save_tasks(tasks)
 
